@@ -1,0 +1,26 @@
+{
+    "env" : {
+        "browser": false,
+        "es6": true,
+        "node": true
+    },
+    "plugins" : ["prettier"],
+    "extends" : ["eslint:recommended", "plugin:prettier/recommended"],
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    },
+    "ignorePatterns":[
+        "node_modules/",
+        "logs"
+    ],
+    "rules" : {
+        "no-console" : "error",
+        "no-extra-parens" : "error",
+        "semi" : ["error", "always"],
+        "eqeqeq" : ["error", "always"],
+        "quotes" : ["error", "single"],
+        "indent" : ["error", 4],
+        "no-var" : "error"
+    }
+}
