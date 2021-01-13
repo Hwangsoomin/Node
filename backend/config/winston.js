@@ -26,7 +26,7 @@ const logger = winston.createLogger({
       level: 'info',
       datePattern: 'YYYY-MM-DD',
       dirname: logDir,
-      filename: `%DATE%.log`,
+      filename: '%DATE%.log',
       maxFiles: 30, // 30일치 로그 파일 저장
       zippedArchive: true,
     }),
@@ -35,7 +35,7 @@ const logger = winston.createLogger({
       level: 'error',
       datePattern: 'YYYY-MM-DD',
       dirname: logDir + '/error', // error.log 파일은 /logs/error 하위에 저장
-      filename: `%DATE%.error.log`,
+      filename: '%DATE%.error.log',
       maxFiles: 30,
       zippedArchive: true,
     }),
@@ -53,11 +53,5 @@ if (process.env.NODE_ENV !== 'production') {
     })
   );
 }
-
-const stream = {
-  write: (message) => {
-    logger.info(message);
-  },
-};
 
 export { logger };
