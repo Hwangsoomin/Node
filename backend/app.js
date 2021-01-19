@@ -2,7 +2,8 @@ import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-import { logger } from './config/winston';
+import { logger, stream } from './config/winston';
+import morgan from 'morgan';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 
@@ -15,6 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(morgan('dev', { stream }));
 
 // errorHandler
 //eslint-disable-next-line no-unused-vars
