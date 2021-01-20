@@ -6,6 +6,9 @@ const { combine, timestamp, printf } = winston.format;
 
 // Define log format
 const logFormat = printf((info) => {
+  if (info.message.constructor === Object) {
+    info.message = JSON.stringify(info.message, null, 4);
+  }
   return `${info.timestamp} ${info.level}: ${info.message}`;
 });
 
