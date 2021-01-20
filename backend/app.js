@@ -2,13 +2,14 @@ import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-import { logger, stream } from './config/winston';
+import { logger, stream } from './config/winston.js';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 
 let app = express();
 dotenv.config();
+global.logger = logger;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
