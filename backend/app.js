@@ -6,6 +6,7 @@ import { logger, stream } from './config/winston.js';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import indexRoute from './routes/index.route.js';
 
 let app = express();
 dotenv.config();
@@ -18,6 +19,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(morgan('dev', { stream }));
+
+app.use('/api', indexRoute);
 
 // errorHandler
 //eslint-disable-next-line no-unused-vars
