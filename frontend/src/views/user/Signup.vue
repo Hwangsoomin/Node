@@ -1,83 +1,89 @@
 <template>
-	<v-container justify="center">
-		<v-card class="ma-10 pa-10" style="max-width: 500px;" outlined>
-			<v-list-item class="pl-0">
-				<v-list-item-content>
-					<div>
-						SIGN UP
-					</div>
-				</v-list-item-content>
-			</v-list-item>
-			<v-form ref="form" v-model="valid" lazy-validation>
-				<v-row>
-					<v-col>
+	<v-container class="fill-height">
+		<v-row justify="center" align="center">
+			<v-card class="ma-10 pa-10" style="max-width: 500px;" outlined>
+				<v-list-item class="pl-0">
+					<v-list-item-content>
+						<div>
+							SIGN UP
+						</div>
+					</v-list-item-content>
+				</v-list-item>
+				<v-form ref="form" v-model="valid" lazy-validation>
+					<v-row>
+						<v-col>
+							<v-text-field
+								v-model="name"
+								:counter="10"
+								:rules="nameRules"
+								label="Name"
+								required
+							></v-text-field>
+						</v-col>
+
+						<v-col>
+							<v-select
+								v-model="gender"
+								:items="items"
+								:rules="[v => !!v || '성별을 선택해주세요!']"
+								label="성별"
+								required
+							></v-select>
+						</v-col>
+					</v-row>
+
+					<v-row class="pa-3">
 						<v-text-field
-							v-model="name"
-							:counter="10"
-							:rules="nameRules"
-							label="Name"
+							v-model="email"
+							:rules="emailRules"
+							label="E-mail"
 							required
 						></v-text-field>
-					</v-col>
+					</v-row>
 
-					<v-col>
-						<v-select
-							v-model="gender"
-							:items="items"
-							:rules="[v => !!v || '성별을 선택해주세요!']"
-							label="성별"
+					<v-row class="pa-3">
+						<v-text-field
+							v-model="id"
+							:rules="idRules"
+							label="ID"
 							required
-						></v-select>
-					</v-col>
-				</v-row>
+						></v-text-field>
+					</v-row>
 
-				<v-row class="pa-3">
-					<v-text-field
-						v-model="email"
-						:rules="emailRules"
-						label="E-mail"
-						required
-					></v-text-field>
-				</v-row>
+					<v-row class="pa-3">
+						<v-text-field
+							v-model="password"
+							:rules="passwordRules"
+							type="password"
+							label="PASSWORD"
+							required
+						>
+						</v-text-field>
+					</v-row>
 
-				<v-row class="pa-3">
-					<v-text-field
-						v-model="id"
-						:rules="idRules"
-						label="ID"
-						required
-					></v-text-field>
-				</v-row>
-
-				<v-row class="pa-3">
-					<v-text-field
-						v-model="password"
-						:rules="passwordRules"
-						type="password"
-						label="PASSWORD"
-						required
-					>
-					</v-text-field>
-				</v-row>
-
-				<v-row class="justify-center">
-					<v-btn
-						depressed
-						color="pink lighten-2"
-						style="color: white;"
-						v-on:click="register()"
-					>
-						회원가입
-					</v-btn>
-				</v-row>
-			</v-form>
-		</v-card>
-		<v-snackbar v-model="snackbar.show" :timeout="2000" :color="snackbar.color">
-			{{ snackbar.text }}
-			<v-btn justify="center" text v-on:click="snackbar.show = false">
-				close
-			</v-btn>
-		</v-snackbar>
+					<v-row class="justify-center">
+						<v-btn
+							depressed
+							color="pink lighten-2"
+							style="color: white;"
+							v-on:click="register()"
+						>
+							회원가입
+						</v-btn>
+					</v-row>
+				</v-form>
+			</v-card>
+			<v-snackbar
+				v-model="snackbar.show"
+				:timeout="2000"
+				:color="snackbar.color"
+			>
+				{{ snackbar.text }}
+				<v-btn justify="center" text v-on:click="snackbar.show = false">
+					close
+				</v-btn>
+			</v-snackbar>
+		</v-row>
 	</v-container>
 </template>
 
