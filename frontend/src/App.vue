@@ -1,6 +1,6 @@
 <template>
 	<v-app>
-		<div class="d-flex justify-center align-center" style="height: 100%">
+		<div style="height: 100%">
 			<router-view />
 		</div>
 	</v-app>
