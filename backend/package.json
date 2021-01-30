@@ -25,6 +25,7 @@
     "eslint": "^7.17.0",
     "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-prettier": "^3.3.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.9",
     "morgan": "^1.9.1",
     "prettier": "2.2.1",
