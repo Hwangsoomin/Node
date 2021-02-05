@@ -1,8 +1,8 @@
-import { UserSchema } from '../model/schema.model.js';
+import { User } from '../model/schema.model.js';
 
 export class UserDao {
   static createUser = async (name, gender, email, id, password) => {
-    const user = new UserSchema({
+    const user = new User({
       name,
       gender,
       email,
@@ -11,7 +11,12 @@ export class UserDao {
     });
     return await user.save();
   };
+
+  static getUser = async (id) => {
+    return User.findOne({ id });
+  };
+
   static login = async (id) => {
-    return UserSchema.findOne({ id });
+    return User.findOne({ id });
   };
 }
