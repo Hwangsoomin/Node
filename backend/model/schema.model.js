@@ -28,5 +28,15 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-const UserSchema = new mongoose.model('UserSchema', userSchema);
-export { UserSchema };
+const refreshTokenSchema = new mongoose.Schema({
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'UserSchema' },
+  token: String,
+  expires: Date,
+  created: { type: Date, default: Date.now },
+  revoked: Date,
+  replacedByToken: String,
+});
+
+const User = new mongoose.model('User', userSchema);
+const RefreshToken = new mongoose.model('RefreshToken', refreshTokenSchema);
+export { User, RefreshToken };
