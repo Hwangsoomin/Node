@@ -1,6 +1,7 @@
 import { UserDao } from '../dao/user.dao.js';
 import { ErrorHandler } from '../model/Error.js';
 import bcrypt from 'bcrypt';
+import { JWT } from '../util/jwt.js';
 
 export class UserService {
   static createUser = async (data) => {
@@ -21,11 +22,19 @@ export class UserService {
     }
   };
   static login = async (data) => {
-    const result = await UserDao.login(data.id);
-    if (result === null) throw new ErrorHandler(401, 'User not found');
+    const user = await UserDao.login(data.id);
+    if (user === null) throw new ErrorHandler(401, 'User not found');
 
-    const unauthorized = await bcrypt.compare(data.password, result.password);
-    if (!unauthorized) throw new ErrorHandler(401, 'Wrong password');
+    const unauthorized = await bcrypt.compare(data.password, user.password);
+    if (!unauthorized) throw new ErrorHandler(401, 'Auth Error');
+
+    const accessToken = await JWT.accessToken(user);
+    const result = { user: user, accessToken: accessToken };
+    return result;
+  };
+  static getUser = async (data) => {
+    const result = await UserDao.getUser(data.id);
+    if (result === null) throw new ErrorHandler(401, 'User not found');
     return result;
   };
 }
