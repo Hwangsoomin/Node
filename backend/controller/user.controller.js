@@ -21,4 +21,14 @@ export class UserController {
       next(err);
     }
   };
+  static getUser = async (req, res, next) => {
+    try {
+      const result = await UserService.getUser(req.params);
+      return res
+        .status(201)
+        .json(new Response(201, 'success', 'success get user', result));
+    } catch (err) {
+      next(err);
+    }
+  };
 }
