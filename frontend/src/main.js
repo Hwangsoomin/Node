@@ -4,6 +4,7 @@ import router from './router';
 import store from './store/index';
 import vuetify from './plugins/vuetify';
 import VueLogger from 'vuejs-logger';
+import axios from './axios';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -20,6 +21,7 @@ const options = {
 Vue.use(VueLogger, options);
 
 Vue.config.productionTip = false;
+Vue.prototype.$axios = axios;
 
 new Vue({
 	router,
